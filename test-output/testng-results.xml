@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-08-05T20:23:32 ICT" name="Default suite" finished-at="2025-08-05T20:26:20 ICT" duration-ms="167996">
+    <groups>
+    </groups>
+    <test started-at="2025-08-05T20:23:32 ICT" name="Default test" finished-at="2025-08-05T20:26:20 ICT" duration-ms="167996">
+      <class name="tests.TextBoxTest">
+        <test-method is-config="true" signature="openWeb()[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:23:32 ICT" name="openWeb" finished-at="2025-08-05T20:23:57 ICT" duration-ms="24522" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openWeb -->
+        <test-method signature="submitDataSuccesfully()[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:23:57 ICT" name="submitDataSuccesfully" finished-at="2025-08-05T20:24:20 ICT" duration-ms="23324" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitDataSuccesfully -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:24:20 ICT" name="closeBrowser" finished-at="2025-08-05T20:24:20 ICT" duration-ms="197" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openWeb()[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:24:20 ICT" name="openWeb" finished-at="2025-08-05T20:24:47 ICT" duration-ms="26298" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openWeb -->
+        <test-method signature="validateEmailformat(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:24:47 ICT" name="validateEmailformat" data-provider="TextBoxData" finished-at="2025-08-05T20:25:25 ICT" duration-ms="38570" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[demoQA]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[abcgmail.com]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Huyng Thuc Khang]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[501]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateEmailformat -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:25:25 ICT" name="closeBrowser" finished-at="2025-08-05T20:25:25 ICT" duration-ms="180" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openWeb()[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:25:25 ICT" name="openWeb" finished-at="2025-08-05T20:25:52 ICT" duration-ms="26106" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openWeb -->
+        <test-method signature="validateEmailformat(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:25:52 ICT" name="validateEmailformat" data-provider="TextBoxData" finished-at="2025-08-05T20:26:20 ICT" duration-ms="28655" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[demoQA]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[abcgmail.com]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Huyng Thuc Khang]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[501]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateEmailformat -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.TextBoxTest@2a65fe7c]" started-at="2025-08-05T20:26:20 ICT" name="closeBrowser" finished-at="2025-08-05T20:26:20 ICT" duration-ms="119" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- tests.TextBoxTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
