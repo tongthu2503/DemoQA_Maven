@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends Page {
 	By lblElements = By.xpath("//h5[text()='Elements']");
+	By lblForms = By.xpath("//div[@class='header-wrapper' and contains(., 'Forms')]");
 	public HomePage(WebDriver dr) {
 		super(dr);
 	}
@@ -14,6 +15,11 @@ public class HomePage extends Page {
 		scrollToElement(lblElements);
 		driver.findElement(lblElements).click();
 		return new ElementsPage(driver);
+	}
+	
+	public AutomationPracticeFormPage clickOnForms() {
+		driver.findElement(lblForms).click();
+		return new AutomationPracticeFormPage(driver);
 	}
 	
 	public void scrollToElement(By locator) {

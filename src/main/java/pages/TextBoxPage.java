@@ -1,11 +1,8 @@
 package pages;
 
-import static org.testng.Assert.assertEquals;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class TextBoxPage extends Page{
 	By txtFullName = By.id("userName");
@@ -37,6 +34,7 @@ public class TextBoxPage extends Page{
 		scrollToElement(btnSubmit);
 		driver.findElement(btnSubmit).click();
 	}
+	
 	public String getActualValue(By locator) {
 		String originalStr = driver.findElement(locator).getText();
 		String[] originalArr = originalStr.split(":");
