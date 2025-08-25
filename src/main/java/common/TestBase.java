@@ -53,9 +53,11 @@ public class TestBase {
 //	}
 	
 	public void clickOnRadiobutton(String originalXpath, String value) {
-		String newXpathString = originalXpath.replace("{@param}", value);
-	    By newXpath = By.xpath(newXpathString);
-	    clickOnElement(newXpath);
+		if (!value.isEmpty()) {
+			String newXpathString = originalXpath.replace("{@param}", value);
+			By newXpath = By.xpath(newXpathString);
+			clickOnElement(newXpath);
+		}
 	}
 	
 	/**
@@ -102,10 +104,12 @@ public class TestBase {
 	 * @param value: String format = "value1, value 2, ...."
 	 */
 	public void inputComboBoxWithMultiData(By locator,String value) {
-		String[] values = value.split(",");
-		for(int i = 0; i < values.length; i++) {
+		if (!value.isEmpty()) {
+			String[] values = value.split(",");
+			for(int i = 0; i < values.length; i++) {
 			inputText(locator, values[i].trim());
 			inputText(locator, Keys.ENTER);
+			}
 		}
 	}
 	
@@ -117,5 +121,17 @@ public class TestBase {
 	public void scrollToElement(By locator) {
 		JavascriptExecutor js = (JavascriptExecutor) webDriver;
 		js.executeScript("arguments[0].scrollIntoView();", webDriver.findElement(locator));
+	}
+	
+	public String getTextByLocator(String originalXpath, String fieldName) {
+		String result = "";
+		By newXpath = getXpathByParam(originalXpath, fieldName);
+		result = webDriver.findElement(newXpath).getText();
+		return result;
+	}
+	
+	public void searchOnTable(By locator, String searchValue) {
+		inputText(locator,searchValue);
+		inputText(locator, Keys.ENTER);
 	}
 }

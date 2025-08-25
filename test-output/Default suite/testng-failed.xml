@@ -7,7 +7,6 @@
         <methods>
           <include name="openWeb"/>
           <include name="submitBlankAllRequiredFields"/>
-          <include name="closeBrowser"/>
         </methods>
       </class> <!-- tests.AutomationPracticeFormTest -->
     </classes>

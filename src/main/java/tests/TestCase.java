@@ -11,7 +11,7 @@ public class TestCase {
 	public void openWeb() {
 		base.openBrowser();
 	}
-	@AfterMethod
+	//@AfterMethod
 	public void closeBrowser() {
 		base.webDriver.quit();
 	}

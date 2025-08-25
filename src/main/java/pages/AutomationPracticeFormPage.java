@@ -1,11 +1,15 @@
 package pages;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import tests.models.StudentRegistration;
 
 public class AutomationPracticeFormPage extends Page{
 	//Input
@@ -25,54 +29,30 @@ public class AutomationPracticeFormPage extends Page{
 	By cbState = By.id("state");
 	By cbCity = By.id("city");
 	By btnSubmit = By.id("submit");
-	//Output
-	public By studentNameValue = By.xpath("//*[@class = 'table-responsive']//tr[1]/td[2]");
-	public By studentEmailValue = By.xpath("//*[@class = 'table-responsive']//tr[2]/td[2]");
-	public By genderValue = By.xpath("//*[@class = 'table-responsive']//tr[3]/td[2]");
-	public By mobileValue = By.xpath("//*[@class = 'table-responsive']//tr[4]/td[2]");
-	public By dateOfBirthValue = By.xpath("//*[@class = 'table-responsive']//tr[5]/td[2]");
-	public By subjectsValue = By.xpath("//*[@class = 'table-responsive']//tr[6]/td[2]");
-	public By hobbiesValue = By.xpath("//*[@class = 'table-responsive']//tr[7]/td[2]");
-	public By pictureValue = By.xpath("//*[@class = 'table-responsive']//tr[8]/td[2]");
-	public By addressValue = By.xpath("//*[@class = 'table-responsive']//tr[9]/td[2]");
-	public By stateAndCityValue = By.xpath("//*[@class = 'table-responsive']//tr[10]/td[2]");
-	
+	public By txtFirstNameInvalid = By.cssSelector("input#firstName.form-control:invalid");
+	public By txtLastNameInvalid = By.cssSelector("input#lastName.form-control:invalid");
+	public By txtMobileInvalid = By.cssSelector("input#userNumber.form-control:invalid");
+	public By rdGenderInvalid = By.cssSelector("input:invalid~.custom-control-label");
 	//contructor
-		public AutomationPracticeFormPage(WebDriver dr) {
-			super(dr);	
-		}
-
-	public void inputData(String firstName, String lastName, String email, String gender, String phone, String dateOfBirth, String subjects, 
-			String hobbies, String uploadFile, String currentAddress, String state, String city) {
-		testBase.zoomOut("60%");
-		testBase.inputText(txtFirstName, firstName);
-		testBase.inputText(txtLastName, lastName);
-		testBase.inputText(txtUserEmail, email);
-		testBase.clickOnRadiobutton(rdGenderXpath, gender);
-		testBase.inputText(txtUserNumber, phone);	
-		inputDate(dateOfBirth);
-		testBase.scrollToElement(btnSubmit);
-		testBase.inputComboBoxWithMultiData(cbSubjects, subjects);
-		testBase.clickOnCheckBox(rdHobbiesXpath, hobbies);
-		testBase.inputText(btnUploadPicture,uploadFile);
-		testBase.inputText(txtCurrentAddress, currentAddress);
-		testBase.selectComboboxValue(cbState, state);
-		testBase.selectComboboxValue(cbCity, city);
-		driver.findElement(btnSubmit).click();
+	public AutomationPracticeFormPage(WebDriver dr) {
+		super(dr);	
 	}
-	
-	public void inputAllOptionalFields(String email, String subjects, 
-			String hobbies, String uploadFile, String currentAddress, String state, String city) {
+
+	public void inputData(StudentRegistration studentRegistration) {
 		testBase.zoomOut("60%");
-		testBase.inputText(txtUserEmail, email);
+		testBase.inputText(txtFirstName, studentRegistration.getFirstName());
+		testBase.inputText(txtLastName, studentRegistration.getLastName());
+		testBase.inputText(txtUserEmail, studentRegistration.getEmail());
+		testBase.clickOnRadiobutton(rdGenderXpath, studentRegistration.getGender());
+		testBase.inputText(txtUserNumber, studentRegistration.getPhone());	
+		inputDate(studentRegistration.getDateOfBirth());
 		testBase.scrollToElement(btnSubmit);
-		testBase.inputComboBoxWithMultiData(cbSubjects, subjects);
-		testBase.clickOnCheckBox(rdHobbiesXpath, hobbies);
-		testBase.inputText(btnUploadPicture,uploadFile);
-		testBase.inputText(txtCurrentAddress, currentAddress);
-		testBase.selectComboboxValue(cbState, state);
-		testBase.selectComboboxValue(cbCity, city);
-		driver.findElement(btnSubmit).click();
+		testBase.inputComboBoxWithMultiData(cbSubjects, studentRegistration.getSubjects());
+		testBase.clickOnCheckBox(rdHobbiesXpath, studentRegistration.getHobbies());
+		testBase.inputText(btnUploadPicture,studentRegistration.getUploadFile());
+		testBase.inputText(txtCurrentAddress, studentRegistration.getCurrentAddress());
+		testBase.selectComboboxValue(cbState, studentRegistration.getState());
+		testBase.selectComboboxValue(cbCity, studentRegistration.getCity());
 	}
 	
 	public void inputDate(String dateOfBirth) {
@@ -144,13 +124,55 @@ public class AutomationPracticeFormPage extends Page{
         return day + " " + month + "," + year;
 	}
 	
-	public boolean checkHighLightField(By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-		String borderColor = element.getCssValue("border-color").trim();
-		System.out.print(borderColor);
-		boolean isHighLight = borderColor.equalsIgnoreCase("#dc3545") || 
-                borderColor.equalsIgnoreCase("rgb(220, 53, 69)");
-		return isHighLight;
+	public String checkHighLightField(By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));	
+		String borderColor = element.getCssValue("border-color").trim();        
+		return borderColor;
 	}
+	
+	public boolean isCheckRequiredFields(ArrayList<By> locators) {
+		boolean isChecked = false;
+		int count = 0;
+		for(By locator:locators) {
+			String actualCSS = checkHighLightField(locator);
+			System.out.println(actualCSS);
+			if (actualCSS.equalsIgnoreCase("#dc3545") || actualCSS.equalsIgnoreCase("rgb(209, 175, 183)") || actualCSS.equalsIgnoreCase("rgb(208, 189, 196)") ) {
+			count = count + 1;
+		}
+		System.out.println(count);
+		}
+		if (count == locators.size()) {
+			isChecked = true;
+		}
+		return isChecked;
+	}
+	
+	public boolean checkHighLightField1(By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		if (element.isDisplayed())
+			{return true;}
+		else { return false;}
+	}
+	
+	public boolean checkHighlightFields(By locator) {
+		List<WebElement> elements = driver.findElements(locator);
+		for(WebElement e: elements) {
+			if (!e.isDisplayed()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public void submitUnsuccessfully() {
+		testBase.clickOnElement(btnSubmit);
+	}
+	
+	public ThanksForSubmitting submitSuccessfully() {
+		testBase.clickOnElement(btnSubmit);
+		return new ThanksForSubmitting(driver);
+	}
+	
 }
