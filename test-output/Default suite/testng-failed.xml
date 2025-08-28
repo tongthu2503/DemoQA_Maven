@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.AutomationPracticeFormTest">
+      <class name="tests.WebablesTest">
         <methods>
           <include name="openWeb"/>
-          <include name="submitBlankAllRequiredFields"/>
+          <include name="addAccountSuccessFully"/>
         </methods>
-      </class> <!-- tests.AutomationPracticeFormTest -->
+      </class> <!-- tests.WebablesTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

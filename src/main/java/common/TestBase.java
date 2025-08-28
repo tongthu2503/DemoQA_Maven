@@ -130,8 +130,10 @@ public class TestBase {
 		return result;
 	}
 	
-	public void searchOnTable(By locator, String searchValue) {
-		inputText(locator,searchValue);
-		inputText(locator, Keys.ENTER);
+	public String getActualValue(By locator) {
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		String originalStr = element.getText().trim();
+		return originalStr;
 	}
 }
